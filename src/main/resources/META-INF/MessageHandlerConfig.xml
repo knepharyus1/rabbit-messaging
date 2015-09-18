@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+  <host>servername</host>
+  <exchange>rabbitmq.exchange</exchange>
+  <username>username</username>
+  <sslPort>5671</sslPort>
+  <keyStoreFile>/path/to/keycert.p12</keyStoreFile>
+  <keyPass>password</keyPass>
+  <trustStoreFile>/path/to/clientcert.jks</trustStoreFile>
+  <trustPass>password</trustPass>
+</config>
