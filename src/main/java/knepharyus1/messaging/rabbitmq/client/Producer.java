@@ -26,6 +26,10 @@ public class Producer {
 		
 	}
 	
+	public Producer(String host, String exchange, String username, String vhost) {
+		handler = new MessageHandler(host, exchange, username, vhost);
+	}
+	
 	public void publish(String[] keys) throws IOException {
 		
 		for (String key : keys) {

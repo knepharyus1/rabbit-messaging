@@ -31,7 +31,7 @@ public class MessageHandler {
   public MessageHandler() throws IOException, TimeoutException, ConfigurationException {
     this(CONFIGPATH);
   }
-
+  
   public MessageHandler(String configFile) throws IOException, TimeoutException, ConfigurationException {
     super();
     
@@ -48,6 +48,33 @@ public class MessageHandler {
       vhost = xmlConf.getProperty("vhost").toString();
     }
 
+    
+    this.init(host, exchange, username, vhost);
+
+//    factory = new ConnectionFactory();
+//    factory.setHost(host);
+//    factory.setPort(5672);
+//    factory.setUsername(username);
+//    factory.setPassword(username);
+//    if (vhost != null) {
+//      factory.setVirtualHost(vhost);
+//    }
+//
+////    conn = factory.newConnection();
+////    channel = conn.createChannel();
+//    this.newChannel();
+
+  }
+
+  public MessageHandler(String host, String exchange, String username, String vhost) {
+  	super();
+  	
+  	this.init(host, exchange, username, vhost);
+
+  }
+
+  private void init(String host, String exchange, String username, String vhost) {
+
     System.out.println("host: " + host + "; exchange: " + exchange + "; vhost: " + (vhost == null ? "null" : vhost));
 
     factory = new ConnectionFactory();
@@ -58,11 +85,9 @@ public class MessageHandler {
     if (vhost != null) {
       factory.setVirtualHost(vhost);
     }
-
-//    conn = factory.newConnection();
-//    channel = conn.createChannel();
+    
     this.newChannel();
-
+  	
   }
 
   private void newChannel() {
@@ -128,4 +153,7 @@ public class MessageHandler {
     channel.basicConsume(queue, true, consumer);
   }
 
+  public Channel getChannel() {
+  	return channel;
+  }
 }
